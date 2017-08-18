@@ -3,7 +3,7 @@ cd "$(dirname "$0")"
 
 dir="$(dirname "$0")"
 
-read -p "Enter your file size : " filesize
+read -p "Enter your file size @ 1x: " filesize
 
 echo $filesize
 
@@ -16,14 +16,15 @@ do
   name=$(echo $filename | cut -f 1 -d '.')
 
   mkdir $name
-  convert icon.png -resize $filesize'x'$filesize $name"temp."$extension
+  convert $filename -resize $filesize'x'$filesize $name"temp."$extension
   mv $name"temp."$extension $name/$name"."$extension
 
-  convert icon.png -resize $((filesize*2))'x'$((filesize*2)) $name"temp."$extension
-  mv $name"temp."$extension $name/$name"2x."$extension
+  convert $filename -resize $((filesize*2))'x'$((filesize*2)) $name"temp."$extension
+  mv $name"temp."$extension $name/$name"@2x."$extension
 
-  convert icon.png -resize $((filesize*3))'x'$((filesize*3)) $name"temp."$extension
-  mv $name"temp."$extension $name/$name"3x."$extension
+  convert $filename -resize $((filesize*3))'x'$((filesize*3)) $name"temp."$extension
+  mv $name"temp."$extension $name/$name"@3x."$extension
+  
 done
 
 read _
