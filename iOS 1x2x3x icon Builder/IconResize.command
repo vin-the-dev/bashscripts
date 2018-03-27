@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# if convert dosent work brew install ImageMagick
 cd "$(dirname "$0")"
 
 dir="$(dirname "$0")"
